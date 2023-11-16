@@ -1,0 +1,154 @@
+{% extends 'baselogged.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block title %}<title>Cart</title>{% endblock title %}
+
+
+
+
+</head>
+
+{% block content %}
+
+<body>
+  <section class="h-100 pt-0 gradient-custom">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center my-4">
+        <div class="col-md-8 col-sm-11">
+          <div class="card mb-4">
+            {% for t in cart %}
+            <div class="card-body mb-2" style="border: double; border-color:  rgb(1, 134, 151);">
+              <div class="row">
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                  <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                    <img src="{{ t.product.produt_image_1.url }}" class="w-100" style="height: 8em;" alt="" />
+                  </div>
+                </div> 
+                <div class="col-lg-5 col-md-6  col-sm-11mb-0 mb-lg-0">
+                  <div >
+                  <h2> {{t.product.product_name}}</h2>
+                  <hr>
+                  <h6> {{t.product.discription}}</h6>
+                  </div>
+                  <div class="">
+                  <button class="btn btn-danger btn-sm mb-0" data-mdb-toggle="tooltip" title="Move to the wish list">
+                    <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-heart" viewBox="0 0 16 16">
+                        <path
+                          d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                      </svg></i>
+                  </button>
+                  <button type="button" class="btn btn-primary delete-cart-item btn-sm me-1 mb-0" data-mdb-toggle="tooltip"
+                    title="Remove item">
+                    <i> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path
+                          d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                      </svg> Remove from cart</i>
+                  </button>
+                </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                  <div class="product_data mt-2 text-left">
+                    <input type="hidden" value="{{products.id}}" class="prod_id">
+                    {% csrf_token %}
+                    <label for="quantity" style="font-size: small;">Quantity</label>
+                    <div class="input-group mt-1" style="width:7em; ">
+                      <button class="input-group-text decrement-btn text-white"
+                        style="height: 1.5em; background-color:  rgb(2, 143, 161) ;">-</button>
+                      <input type="text" name="quantity" class="form-control qty-input text-center" value="1"
+                        style="height: 1.5em; width:1em;">
+                      <button class="input-group-text increment-btn text-white"
+                        style="height: 1.5em; background-color:  rgb(2, 143, 161) ;">+</button>
+                    </div>
+                  </div>
+
+                  <div class="d-flex mt-4" style="justify-content: space-around;">
+                    <h6>$ <strike>{{t.product.original_price | floatformat}}</strike></h6>
+
+                    <h3>${{t.product.selling_price | floatformat}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="card mb-4 mb-lg-0">
+            <div class="card-body">
+              <p><strong>We accept</strong></p>
+              <img class="me-2" width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                alt="Visa" />
+              <img class="me-2" width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                alt="American Express" />
+              <img class="me-2" width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                alt="Mastercard" />
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4 ">
+          <div class="card mb-4">
+            <div class="card-header p-1 text-white " style="background-color:  rgb(1, 96, 109);">
+              <h5 class="mb-0 p-0">Summary</h5>
+            </div>
+            <div class="card-body " style="border: double; border-color:  rgb(3, 126, 143);">
+
+              <table class="table table-stripeds tale-bordreds">
+                <thead>
+                  <tr>
+                    <th>In cart</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for t in cartitems %}
+                  <tr>
+                    <td>{{ t.product.product_name }} </td>
+                    <td>$ {{ t.product.selling_price | floatformat }}</td>
+                    <td>{{ t.product.quantity }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+
+              </table>        
+              <div class="d-flex" style="justify-content: space-around;">
+                <h5>Total </h5>
+                <h5>: $ {{ total_price }}</h5>
+              </div>
+              <hr>
+              
+
+              <div>
+                <a href="{{ 'placeorder' }}" class="btn p-0 text-white w-100 " style="background-color:rgb(3, 126, 143); width: 50%;"> Checkout</a>
+              </div>
+
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+
+        
+
+      </div>
+    </div>
+  </section>
+
+
+
+</body>
+{% endblock content %}
+
+</html>

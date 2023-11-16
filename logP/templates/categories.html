@@ -1,0 +1,47 @@
+{% extends 'baselogged.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>Categories</title>{% endblock title %}
+</head>
+
+{% block content %}
+<body>
+    <section style="height: 5em;"></section>
+
+
+
+    <div class="text-center pt-3 pb-4">
+        <h2 style="opacity: 50%;">#Select from wide Mycart categories</h2>
+      </div>
+
+
+      <section class="p-3">
+        <div class="row">
+          {% for t in category %}
+          <div class="col-lg-2 col-md-3 col-sm-4 p-1">
+            <div class="card" style="border-color: rgb(3, 126, 143);">
+              <a href="{% url 'products' t.slug %}" class="btn  w-100 text-dark"
+                style="height: 2em; width: 80%; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bolder;">{{t.category_name}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                  <path fill-rule="evenodd"
+                    d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                </svg></a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+
+
+
+
+</body>
+{% endblock content %}
+</html>

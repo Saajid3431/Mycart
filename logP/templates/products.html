@@ -1,0 +1,83 @@
+{% extends 'baselogged.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block title %}<title>Products</title>
+  {% endblock title %}
+  
+</head>
+{% block content %}
+
+<body>
+  
+  <section style="height:2em;">
+
+  </section>
+
+
+  <section class="pt-5">
+    {% for t in category %}
+    <div>
+      <div class="container ">
+        <div class=" row d-flex ">
+          <div class=" col-sm-12 row ">
+            <h3 class="text-dark " style="font-weight: bolder;opacity: 50%; font-size: 2em">#Select from our wide collection for {{t.category_name}}...</h3>
+          </div>
+          <div class="col-lg-6 col-sm-12 ">
+            <h6 style="opacity: 50%;">{{t.category_disc}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+
+
+
+  
+
+  <section class="p-3 pt-3">
+    <div class="row ">
+      {% for t in products %}
+      <div class="col-lg-2 col-md-3 col-sm-4 p-3">
+        <div class="card bg-white" style="border-color: rgb(3, 126, 143); border-style: dotted;">
+          <img src="{{t.produt_image_1.url}}" class="d-block w-100" style="height: 10em;" alt="...">
+          <div class="p-1 pb-0">
+          <h6
+            style="font-weight: 600; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;"
+            class="card-title text-dark">{{t.product_name}}
+          </h6>
+        </div>
+          <div class="ps-1 pe-1 pb-0">
+          <div style="height: 3em;">
+            <h6 class="subtitle text-dark" style="  font-size: x-small;">
+              {{t.discription}}
+            </h6>
+          </div>
+          <hr class="mt-1 mb-0">
+          <div class="d-flex text-center p-0" style="justify-content: space-around;">
+            <div class="pt-3">
+              <h6 style="font-size: smaller; font-family: cursive;">$<strike>{{t.original_price | floatformat}} </strike> </h6>
+            </div>
+            <div class="mt-1 ">
+              <h6 style="font-size: xx-small;" class="mb-0">Our price</h6>
+              <h4>${{t.selling_price | floatformat}} </h4>
+            </div>
+          </div>
+          <div class="pb-1">
+            <a class="btn text-white p-0 w-100" href="{% url 'productview' t.category.slug t.slug  %}" style="background-color: rgb(3, 126, 143);;">View product</a>
+          </div>
+        </div>
+      </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</body>
+{% endblock content %}
+
+</html>

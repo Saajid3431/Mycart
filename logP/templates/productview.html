@@ -1,0 +1,125 @@
+{% extends 'baselogged.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>View</title>
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}
+
+
+    <section style="height: 7em;">
+
+    </section>
+    <!-- <section>
+        <div>
+            <div class="row d-flex ">
+                <div class="container col-md-8" >
+                    <div class="text-center" style="border-color: rgb(1, 99, 112); border-style: double;">
+                        <div class="">
+                            <div class="p-1 col-sm-12 col-lg-6"  >
+                                <img src="{% static 'uploads\logo 3.png' %}"alt="" class="w-100 "> 
+                            </div>
+                            <div class="col-sm-12 col-lg-6"> <h1>hjhkj </h1>
+                            </div>
+                            
+                            
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div> -->
+
+    <section>
+        
+        <div>
+            <div class="container col-md-8 col-sm-8 pb-5 product_data">
+                <div class="row d-flex p-1 ps-0 pe-0" style="border-style: double; border-color:  rgb(1, 99, 112);">
+                    <div class="col-lg-6 col-sm-12 ps-1 pe-1">
+                        <img src="{{products.produt_image_1.url}}" alt="" style="height:15em ;width:100%;">
+                    </div>
+                    <div class="col-lg-6 col-sm-12  bg-white p-1">
+                        <h2>{{products.product_name}}</h2>
+                        {% if products.trending %}
+                        <label class="float-end badge bg-danger">trending</label>
+                        {% endif %}
+                        <h5>{{products.discription}}</h5>
+                        <hr class="mt-1 mb-0">
+                        <div class=" p-0" style="justify-content: space-around;">
+                            <div class="d-flex text-center" style="justify-content: space-around;">
+                            <div class="mt-1">
+                                <h4 style="font-size: small;" class="mb-0"> M.R.P</h4>
+                                <h6 style="font-size:large; font-family: cursive;">$<strike>{{ products.original_price | floatformat }}
+                                    </strike></h6>
+                            </div>
+                            <div class="mt-1 ">
+                                <h4 style="font-size: small;" class="mb-0">Our price</h4>
+                                <h4 style="font-size:xx-large;">${{ products.selling_price | floatformat }} </h4>
+                            </div>
+                             </div>
+                             
+                            <div class="product_data mt-1 text-left d-flex " style="justify-content: space-around;">
+                                {% if products.quantity > 0 %}
+                                <h6 class="bg-success text-white p-1  pt-0" style="font-size: small;">In stock</h6>
+                                 {% endif %}
+                                {% csrf_token %}
+                                <input type="hidden" value="{{products.id}}" class="prod_id">
+                                <div class="input-group mt-1" style="width:7em;">
+                                    <button class="input-group-text ChangeQuantity decrement-btn text-white" style="height: 1.5em; background-color:  rgb(2, 143, 161) ;">-</button>
+                                    <input type="text" name="quantity" class="form-control qty-input text-center" value="1"
+                                        style="height: 1.5em; width:1em;">
+                                    <button class="input-group-text ChangeQuantity increment-btn text-white" style="height: 1.5em; background-color:  rgb(2, 143, 161) ;">+</button>
+                                </div>
+                            </div>
+                            <div class="pt-3 text-center ">
+                                <button class="btn btn-danger btn-sm mb-0 p-0" data-mdb-toggle="tooltip" title="Move to the wish list" style="width: 30px;">
+                                    <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path
+                                          d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                      </svg></i>
+                                  </button>
+                                {% if products.quantity > 0 %}
+                                <a href="{% url 'addtocart' %}" class="btn p-0 text-white addToCartBtn " style="background-color: rgb(2, 149, 168); width: 50%; font-size: medium;"> Add to cart</a>
+                                {% else %}
+                                <a  class="btn p-0 text-white bg-danger" style="width: 50%; font-size: medium;"> Out of stock</a>
+                                {% endif %}
+                                <!-- {% for messages in messages %}
+                                <div class="text-white pt-3">
+                                <h6 class="pt-3" style="font-style: italic; color: red; font-size: smaller;" >{{messages}}</h6>
+                                <h2>product added successfully</h2>
+                                {% endfor %} -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </section>
+
+
+
+
+    
+
+
+
+
+
+
+
+    {% endblock %}
+</body>
+
+</html>

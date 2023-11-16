@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    {% block title %}<title>Document</title>{% endblock %}
+    <link rel="icon" type="images/x-icon" href="{% static '\uploads\logo 3.png' %}" />
+</head>
+
+<body>
+    <section>``
+        <div class="row">
+            <div class="col-sm-12">
+                <nav class="navbar navbar-expand-lg navbar-light fixed-top pb-1 pt-1"
+                    style="background-color:rgb(1, 99, 112);">
+                    <div>
+                        <img src="{% static 'uploads\nav logo.png' %}" class="mb-0 me-3 ms-1 mt-0" alt=""
+                            style="height: 2em;" alt="">
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse pe-5" id="navbarTogglerDemo01" style="font-size: small;">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item dropdown "
+                                style="margin-right: 2em; font-weight: bolder; font-family: cursive;">
+                                <a class="nav-link dropdown-toggle text-warning" href="#"
+                                    id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Hello, {{user.username}}..!!
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark"
+                                    style="font-family: Arial, Helvetica, sans-serif;"
+                                    aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item text-white" style="font-size: small;"
+                                            href="{% url 'logout' %}">Logout</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" aria-current="page"
+                                    href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'category' %}"> Categories</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'cartview' %}"> Cart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#">Wishlist</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="">Orders</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="">
+                        <div class="container-fluid ">
+                            <form action="{% url 'searchproduct' %}" method="POST" class="d-flex">
+                                {% csrf_token %}
+                                <input class="form-control me-2 mt-2" required name="productsearch" type="search"
+                                    id="searchbar" placeholder="Search for products,brands.." aria-label="Search"
+                                    style="width: 25em; height: 2em; font-size: small;">
+                                <button class="btn btn-outline-white text-white " type="submit"
+                                    style="font-size: small;">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        {% block content %}
+        {% block js %}{% endblock js %}
+        {% endblock %}
+        <section >
+            <footer class=" text-white text-center text-md-start "
+                style="background-color:rgb(1, 99, 112); border-style: double;">
+                <div class="container p-4">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 ">
+                            <h2>Mycart</h2>
+
+                            <p style="font-size: small;">
+                                Welcome to MyCart...! We are an online retailer that specializes in providing
+                                high-quality products at affordable prices. Our mission is to make shopping easy and
+                                convenient for our customers by offering a wide selection of products that meet
+                                their needs and exceed their expectations.
+                                <br>Thank you for choosing MyCart, We look forward to serving you.
+                            </p>
+                        </div>
+                        <div class="col-sm-6 col-lg-3" style="font-size: small;">
+
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#!" class="text-white" style="text-decoration: none;">Report a
+                                        problem</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'faq' %}" class="text-white" style="text-decoration: none;">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white" style="text-decoration: none;">Mycontribution</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-lg-3" style="font-size: small;">
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#!" class="text-white" style="text-decoration: none;">Help</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white" style="text-decoration: none;">Instructions</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white" style="text-decoration: none;">Authority</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white" style="text-decoration: none;">Licenced by</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+        <div class="text-center p-4 bg-white">
+            Copyright © 2023. Mycart.com All Rights
+            | Created by Sajid Subair
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script src="{% static '/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="{% static '/js/custom.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <script>
+        var availableTags = [];
+
+        $.ajax({
+            method: "GET",
+            url: "/product-list",
+            success: function (response) {
+                startAutocomplete(response);
+
+
+            }
+        });
+        function startAutocomplete(availableTags) {
+            $("#searchbar").autocomplete({
+                source: availableTags
+            });
+
+        }
+    </script>
+
+
+    <!-- <script> alertify.set('notifier','position', 'top-right');
+            {% for msg in messages  %}
+            alertify.success('{}');
+            {% endfor %}
+        </script> -->
+
+</body>
+
+</html>

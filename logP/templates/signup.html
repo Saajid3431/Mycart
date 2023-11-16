@@ -1,0 +1,69 @@
+
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {% block title %}<title>Mycart Sign Up</title>{% endblock title %}
+</head>
+{% block content %}
+<body>
+    <section style="height: 5em;">
+
+    </section>
+    
+    <section>
+        <div class="row  p-5 pt-3">
+            <div class="container col-md-8">
+                <div class=" text-center text-white" style="background-color: rgb(1, 99, 112); border-style: double;" >
+                    <div class="">
+                        <img src="{% static 'uploads\logo 3.png' %}" alt="" style="height:8em;">
+                    </div>
+                    <div class="p-1">
+                        <h3>
+                            Sign Up
+                        </h3>
+                    </div>
+                    <div class="p-2 col-md-12">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="pt-2 col-md-12">
+                                <label for="username">Username</label>
+                                <input type="" placeholder="Email Or Phone " id="username" name="username" style="font-size: small;">
+                            </div>
+                            <div class="col-md-12 pt-3">
+                                <label for="email">E-mail id </label>
+                                <input type="" placeholder="Email" id="email" name="email" style="font-size: small;">
+                            </div>
+                            <div class="pt-3">
+                                <label for="password">Password</label>
+                                <input type="" placeholder="Password" id="password" name="password" style="font-size: small;">
+                            </div>
+                            <div class="pt-4">
+                                <button class="btn bg-light " type="submit" style="font-size: small; width: 6em;">Sign Up</button>
+                            </div>
+                            {% for messages in messages  %}
+                            <h6 class="pt-3" style="font-style: italic; color: red; font-size: smaller;" >{{messages}}</h6>
+                            <h6 class="pt-3" style="font-style: italic; font-size: smaller; "> Already have an account ? <a
+                                    href="{% url 'login' %}" style="text-decoration: none;">Login</a></h6>
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+
+
+
+{% endblock %}
+</body>
+
+</html>

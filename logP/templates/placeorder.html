@@ -1,0 +1,99 @@
+{% extends "baselogged.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   {% block title %}<title>Place order</title>{% endblock title %} 
+</head>
+{% block content %}
+<body>
+    
+    
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow ">
+                <div class="card-body">
+                    <h6>Basic details</h6>
+                    <hr>
+                    <div class="row checkoutform" style="font-size:xx-la;" >
+                        <div class="col-md-6">
+                        <input class="form-control" type="text" placeholder="Enter first name..">
+                        </div>
+                        <div class="col-md-6">
+                        <input class="form-control" type="text" placeholder="Enter last name..">
+                        </div>
+                        <div class="col-md-6">
+                        <input class="form-control mt-2" type="text" placeholder="E-mail..">
+                        </div>
+                        <div class="col-md-6 mt-2">
+                        <input class="form-control" type="text" placeholder="Phone number..">
+                        </div>
+                        <div class="col-md-12 mt-2">
+                        <textarea class="form-control " placeholder="Enter Address.."></textarea>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                        <input class="form-control" type="text" placeholder="City..">
+                        </div>
+                        <div class="col-md-6 mt-2">
+                        <input class="form-control" type="text" placeholder="State..">
+                        </div>
+                        <div class="col-md-6 mt-2">
+                        <input class="form-control" type="text" placeholder="Country..">
+                        </div>
+                        <div class="col-md-6 mt-2">
+                        <input class="form-control" type="text" placeholder="Pincode..">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card shadow" style="border-style: double;">
+                <div class="card-body">
+                    {% if cartitems %}
+
+                    <div class="d-flex" style="justify-content: space-between;"><h6>Total amount (Includes all taxes)  :</h6></h6> <h6> $ {{ total_price }}</h6></div>
+                    <div class="d-flex" style="justify-content: space-between;"><h6>Delivery charges  :</h6> <h6> $ 3</h6></div>
+                    <div class="d-flex" style="justify-content: space-between;"><h4>Grant total  :</h4> <h4>$ {{ grant_total }}</h4></div>
+                    
+                    {% else %}
+                    <h4>Your cart is empty..</h4>
+                    {% endif %}
+                    <div class="mt-5">
+                        <h5>
+                            Payment mode  :
+                        </h5>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class=" w-100  text-dark bg-white dropdown-toggle "  id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" style="border: none; font-weight: bolder;">
+                          Cash on delivery
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                          <li><a class="dropdown-item active" href="#">Cash on delivery</a></li>
+                          <li><a class="dropdown-item "  style="opacity: 65%;">Pay through UPI (Not available)</a></li>
+                          <li><a class="dropdown-item "  style="opacity: 65%;">Pay through debit/credit card (Not available)</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-3">
+                        <a href="#" class="btn p-0 text-white w-100 " style="background-color:rgb(3, 126, 143); width: 50%;"> Place Order</a>
+                      </div>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+{% endblock %}
+</html>
